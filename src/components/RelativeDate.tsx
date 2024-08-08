@@ -1,4 +1,9 @@
-import { formatDistanceToNow, isMatch, parse } from "date-fns";
+import {
+  differenceInDays,
+  formatDistanceToNow,
+  isMatch,
+  parse,
+} from "date-fns";
 
 export type MdxDateType = `${number}-${number}-${number}`;
 interface DateProps {
@@ -6,6 +11,24 @@ interface DateProps {
   updated: MdxDateType;
 }
 export function Dates({ startDate, updated }: DateProps) {
+  const relativeStartDate = parse(startDate, "yyyy-MM-dd", new Date());
+  const relativeUpdatedDate = parse(updated, "yyyy-MM-dd", new Date());
+
+  const dateDifference = differenceInDays(
+    relativeUpdatedDate,
+    relativeStartDate,
+  );
+
+  if (dateDifference < 3) {
+    return (
+      <div className="flex flex-col text-sm">
+        <span>
+          Written <RelativeDate rawDate={updated} />
+        </span>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col text-sm">
       <span>
