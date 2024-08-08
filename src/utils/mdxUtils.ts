@@ -1,11 +1,14 @@
 import fs from "node:fs";
 import path from "node:path";
+import type { MdxDateType } from "@/components/RelativeDate";
 
 export interface FrontmatterType {
   title: string;
-  startDate: string;
+  startDate: MdxDateType;
+  updated?: MdxDateType;
   growthStage: "seedling";
   type: "note";
+  topics: string[];
 }
 export const NOTES_PATH = path.join(process.cwd(), "posts", "notes");
 

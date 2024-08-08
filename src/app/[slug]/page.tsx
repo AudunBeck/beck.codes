@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { Dates } from "@/components/RelativeDate";
 import {
   type FrontmatterType,
   NOTES_PATH,
@@ -24,6 +25,13 @@ export default async function Page({ params }: { params: { slug: string } }) {
     <main className="min-h-screen p-24 container mx-auto">
       <article className="prose lg:prose-xl prose-slate dark:prose-invert">
         <h1>{frontmatter.title}</h1>
+        <div className="flex justify-between">
+          {frontmatter.topics && <span>Time to implement topics</span>}
+          <Dates
+            startDate={frontmatter.startDate}
+            updated={frontmatter.startDate}
+          />
+        </div>
         {content}
       </article>
     </main>
