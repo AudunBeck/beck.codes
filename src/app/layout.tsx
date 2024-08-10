@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Script from "next/script";
+import PlausibleProvider from "next-plausible";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,12 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <Script
-          strategy="beforeInteractive"
-          defer
-          data-domain={process.env.PLAUSIBLE_SITE_DOMAIN}
-          data-api={`${process.env.PLAUSIBLE_ANALYTICS_DOMAIN}/${process.env.PLAUSIBLE_ANALYTICS_SUBDIRECTORY}/event`}
-          src={`${process.env.PLAUSIBLE_ANALYTICS_DOMAIN}/${process.env.PLAUSIBLE_ANALYTICS_SUBDIRECTORY}/script.js`}
+        <PlausibleProvider
+          selfHosted
+          domain={process.env.PLAUSIBLE_SITE_DOMAIN || ""}
         />
       </head>
       <body className={inter.className}>{children}</body>
