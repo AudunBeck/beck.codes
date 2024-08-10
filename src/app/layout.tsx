@@ -21,6 +21,7 @@ export default function RootLayout({
         <PlausibleProvider
           selfHosted
           domain={process.env.PLAUSIBLE_SITE_DOMAIN || ""}
+          customDomain={process.env.PLAUSIBLE_ANALYTICS_DOMAIN}
         />
       </head>
       <body className={inter.className}>{children}</body>
