@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
-import type { MdxDateType } from "@/components/RelativeDate";
+
+export type MdxDateType = `${number}-${number}-${number}`;
 
 export interface FrontmatterType {
   title: string;

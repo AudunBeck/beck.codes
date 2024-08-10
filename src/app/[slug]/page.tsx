@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { Dates } from "@/components/RelativeDate";
+import { Dates } from "@/components/Dates";
 import {
   type FrontmatterType,
   NOTES_PATH,
