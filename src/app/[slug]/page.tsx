@@ -22,8 +22,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
     options: { parseFrontmatter: true },
   });
   return (
-    <main className="min-h-screen p-24 container mx-auto">
-      <article className="prose lg:prose-xl prose-slate dark:prose-invert">
+    <main className="container mx-auto">
+      <article className="px-24 prose lg:prose-xl prose-slate dark:prose-invert">
         <h1>{frontmatter.title}</h1>
         <div className="flex justify-between">
           {frontmatter.topics && <span>Time to implement topics</span>}

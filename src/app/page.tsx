@@ -21,7 +21,7 @@ export default async function Home() {
 
   const notes = await Promise.all(promisNotes);
   return (
-    <main className="p-24 min-h-screen container mx-auto">
+    <main className="p-24 container mx-auto">
       <h1 className="text-4xl">Beck.Codes</h1>
       <p>(Hopefully) more coming</p>
       <h2 className="text-2xl mt-6">Digital Garden</h2>
