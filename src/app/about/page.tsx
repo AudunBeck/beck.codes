@@ -2,9 +2,9 @@ import { SmallAbout } from "@/components/SmallAbout";
 
 export default async function AboutPage() {
   return (
-    <main className="px-16 py-8">
+    <main className="px-16">
       <SmallAbout>About</SmallAbout>
-      <h1 className="text-3xl md:text-6xl mb-6 font-semibold">
+      <h1 className="text-3xl md:text-6xl mb-6 font-semibold mt-8">
         Audun Sagstuen Beck
       </h1>
       <h2 className="text-2xl md:text-4xl">

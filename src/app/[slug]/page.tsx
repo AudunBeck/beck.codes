@@ -23,7 +23,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   });
   return (
     <main className="container mx-auto">
-      <article className="px-24 prose md:prose-xl prose-slate dark:prose-invert">
+      <article className="px-24 mt-8 prose md:prose-xl prose-slate dark:prose-invert">
         <h1>{frontmatter.title}</h1>
         <div className="flex justify-between">
           {frontmatter.topics && <span>Time to implement topics</span>}
