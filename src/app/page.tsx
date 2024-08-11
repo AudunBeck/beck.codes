@@ -22,14 +22,17 @@ export default async function Home() {
   const notes = await Promise.all(promisNotes);
   return (
     <main className="px-16 py-8">
-      <h1 className="text-4xl font-semibold">Beck.Codes</h1>
-      <p>(Hopefully) more coming</p>
-      <h2 className="text-2xl mt-6">Digital Garden</h2>
-      <p>My small digital garden.</p>
-      <h3 className="text-lg mt-4">Notes</h3>
-      <section className="grid grid-cols-2 lg:grid-cols-4">
+      <h1 className="text-4xl md:text-6xl font-semibold">Beck.Codes</h1>
+      <h2 className="text-3xl md:text-4xl mt-16">Digital Garden</h2>
+      <p className="text-lg mt-1">My small digital garden.</p>
+      <h3 className="text-2xl md:text-3xl mt-4">Notes</h3>
+      <section className="grid grid-cols-2 lg:grid-cols-4 mt-1">
         {notes.map((note) => (
-          <Link href={note.slug} key={note.slug} className="underline">
+          <Link
+            href={note.slug}
+            key={note.slug}
+            className="text-lg md:text-xl underline"
+          >
             {note.frontmatter.title}
           </Link>
         ))}
