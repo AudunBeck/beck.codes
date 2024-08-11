@@ -25,12 +25,14 @@ export default function RootLayout({
           domain={process.env.PLAUSIBLE_SITE_DOMAIN || ""}
           customDomain={process.env.PLAUSIBLE_ANALYTICS_DOMAIN}
         />
-        <Script
-          strategy="beforeInteractive"
-          defer
-          src={process.env.UMAMI_SOURCE}
-          data-website-id={process.env.UMAMI_WEBSITE_ID}
-        />
+        {process.env.NODE_ENV === "production" && (
+          <Script
+            strategy="beforeInteractive"
+            defer
+            src={process.env.UMAMI_SOURCE}
+            data-website-id={process.env.UMAMI_WEBSITE_ID}
+          />
+        )}
       </head>
       <body className={`${inter.className} min-h-screen`}>
         <Header />
