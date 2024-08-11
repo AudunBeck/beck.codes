@@ -6,6 +6,10 @@ export async function Header() {
       <Link href={"/"} className="text-2xl">
         beck.codes
       </Link>
+      <div className="flex gap-4 text-lg">
+        <Link href={"/now"}>Now</Link>
+        <Link href={"/about"}>About</Link>
+      </div>
     </nav>
   );
 }
