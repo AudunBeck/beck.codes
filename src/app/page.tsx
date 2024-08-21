@@ -26,15 +26,13 @@ export default async function Home() {
       <h2 className="text-3xl md:text-4xl mt-16">Digital Garden</h2>
       <p className="text-lg mt-1">My small digital garden.</p>
       <h3 className="text-2xl md:text-3xl mt-4">Notes</h3>
-      <section className="grid grid-cols-2 lg:grid-cols-4 mt-1">
+      <section className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-1">
         {notes.map((note) => (
-          <Link
-            href={note.slug}
-            key={note.slug}
-            className="text-lg md:text-xl underline"
-          >
-            {note.frontmatter.title}
-          </Link>
+          <div key={note.slug}>
+            <Link href={note.slug} className="text-lg md:text-xl underline">
+              {note.frontmatter.title}
+            </Link>
+          </div>
         ))}
       </section>
     </main>
