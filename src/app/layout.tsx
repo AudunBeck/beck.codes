@@ -31,6 +31,7 @@ export default function RootLayout({
       <body className={`${inter.className} min-h-screen`}>
         <Header />
         {children}
+        <div className="mt-20" />
       </body>
     </html>
   );
