@@ -29,7 +29,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
           {frontmatter.topics && <span>Time to implement topics</span>}
           <Dates
             startDate={frontmatter.startDate}
-            updated={frontmatter.startDate}
+            updated={frontmatter.updated}
           />
         </div>
         {content}

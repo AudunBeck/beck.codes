@@ -4,10 +4,10 @@ import { RelativeDate } from "./RelativeDate";
 
 interface DateProps {
   startDate: MdxDateType;
-  updated: MdxDateType;
+  updated?: MdxDateType
 }
 
-export function Dates({ startDate, updated }: DateProps) {
+export function Dates({ startDate, updated = startDate }: DateProps) {
   const relativeStartDate = parse(startDate, "yyyy-MM-dd", new Date());
   const relativeUpdatedDate = parse(updated, "yyyy-MM-dd", new Date());
 
