@@ -4,12 +4,13 @@ import {
   type FrontmatterType,
   NOTES_PATH,
   noteFilePaths,
+  sortNoteByLastWritten,
 } from "@/utils/mdxUtils";
 import { compileMDX } from "next-mdx-remote/rsc";
 import Link from "next/link";
 
 export default async function Home() {
-  const promisNotes = noteFilePaths.map(async (filePath) => {
+  const promiseNotes = noteFilePaths.map(async (filePath) => {
     const source = fs.readFileSync(path.join(NOTES_PATH, filePath));
     const { content, frontmatter } = await compileMDX<FrontmatterType>({
       source: source,
@@ -19,7 +20,8 @@ export default async function Home() {
     return { content, frontmatter, slug, filePath };
   });
 
-  const notes = await Promise.all(promisNotes);
+  const notes = await Promise.all(promiseNotes);
+  const sortedNotes = sortNoteByLastWritten(notes);
   return (
     <main className="px-16">
       <h1 className="text-4xl md:text-6xl font-semibold mt-8">Beck.Codes</h1>
@@ -27,7 +29,7 @@ export default async function Home() {
       <p className="text-lg mt-1">My small digital garden.</p>
       <h3 className="text-2xl md:text-3xl mt-4">Notes</h3>
       <section className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-1">
-        {notes.map((note) => (
+        {sortedNotes.map((note) => (
           <div key={note.slug}>
             <Link href={note.slug} className="text-lg md:text-xl underline">
               {note.frontmatter.title}
