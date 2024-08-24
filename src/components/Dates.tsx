@@ -4,7 +4,7 @@ import { RelativeDate } from "./RelativeDate";
 
 interface DateProps {
   startDate: MdxDateType;
-  updated?: MdxDateType
+  updated?: MdxDateType;
 }
 
 export function Dates({ startDate, updated = startDate }: DateProps) {
