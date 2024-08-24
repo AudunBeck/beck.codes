@@ -9,6 +9,10 @@ const config: Config = {
   theme: {
     extend: {
       maxWidth: { prose: "72ch" },
+      typography: (theme: any) => ({
+        DEFAULT: { css: { em: { color: theme("colors.green.700") } } },
+        invert: { css: { em: { color: theme("colors.green.400") } } },
+      }),
     },
   },
   plugins: [require("@tailwindcss/typography")],
