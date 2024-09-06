@@ -3,14 +3,14 @@ import path from "node:path";
 import {
   type FrontmatterType,
   NOTES_PATH,
-  noteFilePaths,
+  filePaths,
   sortNoteByLastWritten,
 } from "@/utils/mdxUtils";
 import { compileMDX } from "next-mdx-remote/rsc";
 import Link from "next/link";
 
 export default async function Home() {
-  const promiseNotes = noteFilePaths.map(async (filePath) => {
+  const promiseNotes = filePaths(NOTES_PATH).map(async (filePath) => {
     const source = fs.readFileSync(path.join(NOTES_PATH, filePath));
     const { content, frontmatter } = await compileMDX<FrontmatterType>({
       source: source,
