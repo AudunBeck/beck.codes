@@ -8,14 +8,14 @@ export interface FrontmatterType {
   startDate: MdxDateType;
   updated?: MdxDateType;
   growthStage: "seedling";
-  type: "note";
+  type: "note" | "tech";
   topics: string[];
 }
 export const NOTES_PATH = path.join(process.cwd(), "posts", "notes");
+export const TECH_PATH = path.join(process.cwd(), "posts", "tech");
 
-export const noteFilePaths = fs
-  .readdirSync(NOTES_PATH)
-  .filter((path) => /\.mdx?$/.test(path));
+export const filePaths = (type: string) =>
+  fs.readdirSync(type).filter((path) => /\.mdx?$/.test(path));
 
 export function sortNoteByLastWritten<
   T extends { frontmatter: FrontmatterType },

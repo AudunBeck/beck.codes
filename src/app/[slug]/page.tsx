@@ -1,11 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { Dates } from "@/components/Dates";
-import {
-  type FrontmatterType,
-  NOTES_PATH,
-  noteFilePaths,
-} from "@/utils/mdxUtils";
+import { type FrontmatterType, NOTES_PATH, filePaths } from "@/utils/mdxUtils";
 import { compileMDX } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
 
@@ -44,6 +40,6 @@ export async function generateStaticParams() {
       // Remove the .mdx extension
       .map((path) => path.replace(/\.mdx?$/, ""))
       .map((slug) => ({ params: { slug } }));
-  const notePaths = getSlugParams(noteFilePaths);
+  const notePaths = getSlugParams(filePaths(NOTES_PATH));
   return notePaths;
 }
