@@ -1,0 +1,48 @@
+---
+title: "Running Mill Gen 3 heaters locally"
+startDate: "2024-09-07"
+growthStage: "seedling"
+type: "tech"
+---
+## Why I wrote this
+I got the idea of writing this post when I got an email from Mill, apologizing for making me reset my Gen 3 heaters (again).
+As probably a lot of other people, I turned on all my heaters when I got home checking if they broke.  
+Mine were still running as I left before summer.
+
+## How did it not break
+Since I have set mine up to run locally towards my [Home-Assistant](https://www.home-assistant.io/) server at home, I don't rely on whatever they broke during summer. 
+The [Home-Assistant integration](https://www.home-assistant.io/integrations/mill/) contributed by [@danielhiversen](https://github.com/danielhiversen) made it possible to connect the heaters locally by connecting directly to the heaters' local IP-adress. Instead of through Mill's cloud server.
+
+This post won't get into how I have set up my Home-Assistant server, but will go through how I connected my Mill heaters, making sure they stay local-only, and what small nifty automations I am running throughout winter.
+
+## Prepare
+1. Phone with the Mill app installed.
+2. Make sure are able to connect to and configure your home router.
+3. Already have [Home-Assistant](https://www.home-assistant.io/) up and running.
+
+
+
+## How I set it up
+First you need to set up the heater through Mill's app, follow their instruction until the heater is connected to your Wi-Fi.
+
+Log in to your home router's settings page (usually reachable at the local IP `192.168.0.1`), and find your Mill heater's local IP-adress. Reserve this IP for your heater, this is to make sure that if your heater reconnects to the same local IP-adress if it were to be shut off or disconnect.
+
+Now open your heater's IP-adress in your browser, this will open a simple page with "WiFi setup" and "Device Status". 
+In the WiFi section, change the `Cloud without local API` to `No cloud, local API (as STA)`   
+*NB: Your heaters will not be available in the Mill App, until you change this back or reset them*  
+and input your WiFi's SSID and Password again (this might disconnect your device for a second or two).
+
+You are now free to add your heaters into Home-Assistant locally with the built in integration without relying Mill's cloud server.
+
+## Automations!
+This is why I wanted these smart heaters!  
+By connecting them to all my other sensor, buttons, and automations in Home Assistant,
+I am able to change the temperatures automatically by using different sensors in my home.  
+Current ones I got running are:
+- Day, Night and Away mode.
+- Before my alarm goes off in the morning, turn up the heat in my bedroom, and switch to Day mode.
+- Opening my bedroom window turns off the heater, turn it to the correct mode (not last temp) when closed.
+- When I turn on my desktop PC, turn off heating in my office.
+
+### Things I still want to automate
+Turn off or reduce heating above certain wattage thresholds in the house, to save on the electricity bill.
