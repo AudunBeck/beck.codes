@@ -8,9 +8,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      maxWidth: { prose: "72ch" },
       typography: (theme: any) => ({
-        DEFAULT: { css: { em: { color: theme("colors.green.700") } } },
+        DEFAULT: {
+          css: { em: { color: theme("colors.green.700") }, maxWidth: "72ch" },
+        },
         invert: { css: { em: { color: theme("colors.green.400") } } },
       }),
     },
