@@ -19,22 +19,22 @@ export function Dates({ startDate, updated = startDate }: DateProps) {
   if (dateDifference < 3) {
     return (
       <div className="flex flex-col text-sm">
-        <span>
+        <time dateTime={updated}>
           Written <RelativeDate rawDate={updated} />
-        </span>
+        </time>
       </div>
     );
   }
 
   return (
     <div className="flex flex-col text-sm">
-      <span>
+      <time dateTime={startDate}>
         Written <RelativeDate rawDate={startDate} />
-      </span>
+      </time>
       {updated && (
-        <span>
+        <time dateTime={updated}>
           Last updated <RelativeDate rawDate={updated} />
-        </span>
+        </time>
       )}
     </div>
   );
