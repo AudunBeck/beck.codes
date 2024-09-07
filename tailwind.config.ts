@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import type { PluginUtils } from "tailwindcss/types/config";
 
 const config: Config = {
   content: [
@@ -8,7 +9,7 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      typography: (theme: any) => ({
+      typography: ({ theme }: PluginUtils) => ({
         DEFAULT: {
           css: { em: { color: theme("colors.green.700") }, maxWidth: "72ch" },
         },
