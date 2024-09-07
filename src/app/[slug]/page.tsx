@@ -44,10 +44,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
     options: { parseFrontmatter: true },
   });
   return (
-    <div className="container mx-auto">
-      <div className="px-24 mt-8 prose md:prose-xl prose-slate dark:prose-invert">
-        <p className="text-base uppercase">{frontmatter.type}</p>
+    <main className="container mx-auto">
+      <article className="px-24 mt-8 prose md:prose-xl prose-slate dark:prose-invert">
         <header>
+          <p className="text-base uppercase">{frontmatter.type}</p>
           <h1>{frontmatter.title}</h1>
           <div className="flex justify-between">
             {frontmatter.topics && <span>Time to implement topics</span>}
@@ -57,9 +57,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
             />
           </div>
         </header>
-        <article>{content}</article>
-      </div>
-    </div>
+        <div>{content}</div>
+      </article>
+    </main>
   );
 }
 
