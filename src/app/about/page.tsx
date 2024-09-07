@@ -13,7 +13,7 @@ export default async function AboutPage() {
           and full-time nerd.
         </em>
       </h2>
-      <div className="prose prose-slate md:prose-xl dark:prose-invert mt-8">
+      <div className="prose prose-slate md:prose-lg dark:prose-invert mt-8">
         <p className="">I am not sure what to put here yet.</p>
       </div>
     </main>

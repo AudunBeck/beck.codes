@@ -45,7 +45,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   });
   return (
     <main className="container mx-auto">
-      <article className="px-24 mt-8 prose md:prose-xl prose-slate dark:prose-invert">
+      <article className="px-24 mt-8 prose md:prose-lg prose-slate dark:prose-invert">
         <header>
           <p className="text-base uppercase">{frontmatter.type}</p>
           <h1>{frontmatter.title}</h1>
