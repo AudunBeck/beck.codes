@@ -35,7 +35,7 @@ export default async function Home() {
   const tech = await Promise.all(promiseTech);
   const sortedTech = sortPostByLastWritten(tech);
   return (
-    <main className="px-16">
+    <main className="px-4 md:px-16">
       <h1 className="text-4xl md:text-6xl font-semibold mt-8">Beck.Codes</h1>
       <h2 className="text-3xl md:text-4xl mt-16">Digital Garden</h2>
       <p className="text-lg mt-1">My small digital garden.</p>
