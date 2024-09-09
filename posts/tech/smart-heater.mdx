@@ -1,6 +1,7 @@
 ---
 title: "Running Mill Gen 3 heaters locally"
 startDate: "2024-09-07"
+updated: "2024-09-09"
 growthStage: "seedling"
 type: "tech"
 ---
@@ -28,9 +29,9 @@ First you need to set up the heater through Mill's app, follow their instruction
 Log in to your home router's settings page (usually reachable at the local IP `192.168.0.1`), and find your Mill heater's local IP-adress. Reserve this IP for your heater, this is to make sure that if your heater reconnects to the same local IP-adress if it were to be shut off or disconnect.
 
 Now open your heater's IP-adress in your browser, this will open a simple page with "WiFi setup" and "Device Status". 
-In the WiFi section, change the `Cloud without local API` to `No cloud, local API (as STA)`   
+In the WiFi section, change the `Cloud without local API` to `No cloud, local API (as STA)`.  
 *NB: Your heaters will not be available in the Mill App, until you change this back or reset them*  
-and input your WiFi's SSID and Password again (this might disconnect your device for a second or two).
+Input your WiFi's SSID and Password again (this might disconnect your device for a second or two).
 
 You are now free to add your heaters into Home-Assistant locally with the built in integration without relying Mill's cloud server.
 
