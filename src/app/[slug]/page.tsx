@@ -1,48 +1,37 @@
-import fs from "node:fs";
-import path from "node:path";
 import { Dates } from "@/components/Dates";
 import {
   type FrontmatterType,
   NOTES_PATH,
-  type PostType,
-  TECH_PATH,
   filePaths,
+  getPost,
 } from "@/utils/mdxUtils";
+import type { Metadata } from "next";
 import { compileMDX } from "next-mdx-remote/rsc";
-import { notFound } from "next/navigation";
 
-export default async function Page({ params }: { params: { slug: string } }) {
-  // Find type of post
-  const notes = fs.readdirSync(NOTES_PATH);
-  const tech = fs.readdirSync(TECH_PATH);
+type Props = { params: { slug: string } };
 
-  let type: PostType = "note";
-  if (notes.find((file) => file.includes(params.slug))) {
-    type = "note";
-  } else if (tech.find((file) => file.includes(params.slug))) {
-    type = "tech";
-  }
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const slug = params.slug;
 
-  let filePath: string;
-  switch (type) {
-    case "note":
-      filePath = path.join(NOTES_PATH, `${params.slug}.mdx`);
-      break;
-    case "tech":
-      filePath = path.join(TECH_PATH, `${params.slug}.mdx`);
-      break;
-  }
+  const source = getPost(slug);
 
-  let source: Buffer;
-  try {
-    source = fs.readFileSync(filePath);
-  } catch {
-    notFound();
-  }
+  const { frontmatter } = await compileMDX<FrontmatterType>({
+    source: source,
+    options: { parseFrontmatter: true },
+  });
+
+  return {
+    title: frontmatter.title,
+  };
+}
+
+export default async function Page({ params }: Props) {
+  const source = getPost(params.slug);
   const { content, frontmatter } = await compileMDX<FrontmatterType>({
     source: source,
     options: { parseFrontmatter: true },
   });
+
   return (
     <main className="container mx-auto">
       <article className="px-4 md:px-16 mt-8 prose md:prose-lg prose-slate dark:prose-invert">

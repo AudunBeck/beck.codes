@@ -7,7 +7,10 @@ import Script from "next/script";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Beck.Codes",
+  title: {
+    default: "Beck.Codes",
+    template: "%s | Beck.Codes",
+  },
   description: "My little corner on the internet",
 };
 

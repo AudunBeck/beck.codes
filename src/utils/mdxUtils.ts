@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { notFound } from "next/navigation";
 
 export type MdxDateType = `${number}-${number}-${number}`;
 
@@ -33,4 +34,34 @@ export function sortPostByLastWritten<
   });
 
   return sortedPosts;
+}
+
+export function getPost(slug: string) {
+  const notes = fs.readdirSync(NOTES_PATH);
+  const tech = fs.readdirSync(TECH_PATH);
+
+  let type: PostType = "note";
+  if (notes.find((file) => file.includes(slug))) {
+    type = "note";
+  } else if (tech.find((file) => file.includes(slug))) {
+    type = "tech";
+  }
+
+  let filePath: string;
+  switch (type) {
+    case "note":
+      filePath = path.join(NOTES_PATH, `${slug}.mdx`);
+      break;
+    case "tech":
+      filePath = path.join(TECH_PATH, `${slug}.mdx`);
+      break;
+  }
+
+  let source: Buffer;
+  try {
+    source = fs.readFileSync(filePath);
+  } catch {
+    notFound();
+  }
+  return source;
 }
