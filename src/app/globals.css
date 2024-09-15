@@ -19,10 +19,10 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
-      to right bottom,
-      rgb(var(--background-start-rgb)),
-      rgb(var(--background-end-rgb))
-    )
+    to right bottom,
+    rgb(var(--background-start-rgb)),
+    rgb(var(--background-end-rgb))
+  );
 }
 
 @layer utilities {
