@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "biome check --write ./src"
+    "format": "biome check --write ."
   },
   "dependencies": {
     "date-fns": "^3.6.0",
