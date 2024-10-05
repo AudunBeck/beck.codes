@@ -7,11 +7,13 @@ export type MdxDateType = `${number}-${number}-${number}`;
 export type PostType = "note" | "tech";
 export interface FrontmatterType {
   title: string;
+  aliases: string[];
   startDate: MdxDateType;
   updated?: MdxDateType;
   growthStage: "seedling";
   type: PostType;
   topics: string[];
+  description: string;
 }
 export const NOTES_PATH = path.join(process.cwd(), "posts", "notes");
 export const TECH_PATH = path.join(process.cwd(), "posts", "tech");

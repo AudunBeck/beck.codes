@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build:backlinks": "node ./scripts/post-data.js",
+    "build": "pnpm run build:backlinks && next build",
     "start": "next start",
     "lint": "next lint",
     "format": "biome check --write ."
@@ -12,6 +13,7 @@
   "dependencies": {
     "date-fns": "^3.6.0",
     "next": "14.2.11",
+    "gray-matter": "^4.0.3",
     "next-mdx-remote": "^5.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"

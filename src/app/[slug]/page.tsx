@@ -1,10 +1,13 @@
 import { Dates } from "@/components/Dates";
+import { InternalLink } from "@/components/InternalLink";
+import { doubleBracketLinks } from "@/utils/doubleBracketLinks";
 import {
   type FrontmatterType,
   NOTES_PATH,
   filePaths,
   getPost,
 } from "@/utils/mdxUtils";
+import matter from "gray-matter";
 import type { Metadata } from "next";
 import { compileMDX } from "next-mdx-remote/rsc";
 
@@ -27,23 +30,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function Page({ params }: Props) {
   const source = getPost(params.slug);
-  const { content, frontmatter } = await compileMDX<FrontmatterType>({
-    source: source,
-    options: { parseFrontmatter: true },
+  const { content: tempContent, data } = matter(source);
+  const contentWithInternalLinks = doubleBracketLinks(tempContent, data.title);
+
+  const { content } = await compileMDX({
+    source: contentWithInternalLinks,
+    components: { InternalLink: InternalLink },
   });
 
   return (
     <main className="container mx-auto">
       <article className="px-4 md:px-16 mt-8 prose md:prose-lg prose-slate dark:prose-invert">
         <header>
-          <p className="text-base uppercase">{frontmatter.type}</p>
-          <h1>{frontmatter.title}</h1>
+          <p className="text-base uppercase">{data.type}</p>
+          <h1>{data.title}</h1>
           <div className="flex justify-between">
-            {frontmatter.topics && <span>Time to implement topics</span>}
-            <Dates
-              startDate={frontmatter.startDate}
-              updated={frontmatter.updated}
-            />
+            {data.topics && <span>Time to implement topics</span>}
+            <Dates startDate={data.startDate} updated={data.updated} />
           </div>
         </header>
         <div>{content}</div>
