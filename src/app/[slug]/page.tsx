@@ -18,13 +18,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const source = getPost(slug);
 
-  const { frontmatter } = await compileMDX<FrontmatterType>({
-    source: source,
-    options: { parseFrontmatter: true },
-  });
+  const { data } = matter(source);
 
   return {
-    title: frontmatter.title,
+    title: data.title,
   };
 }
 
