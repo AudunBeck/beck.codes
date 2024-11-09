@@ -1,20 +1,17 @@
 import { Dates } from "@/components/Dates";
 import { InternalLink } from "@/components/InternalLink";
 import { doubleBracketLinks } from "@/utils/doubleBracketLinks";
-import {
-  type FrontmatterType,
-  NOTES_PATH,
-  filePaths,
-  getPost,
-} from "@/utils/mdxUtils";
+import { NOTES_PATH, filePaths, getPost } from "@/utils/mdxUtils";
 import matter from "gray-matter";
 import type { Metadata } from "next";
 import { compileMDX } from "next-mdx-remote/rsc";
 
-type Props = { params: { slug: string } };
+type Params = Promise<{ slug: string }>;
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const slug = params.slug;
+export async function generateMetadata({
+  params,
+}: { params: Params }): Promise<Metadata> {
+  const { slug } = await params;
 
   const source = getPost(slug);
 
@@ -25,8 +22,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function Page({ params }: Props) {
-  const source = getPost(params.slug);
+export default async function Page({ params }: { params: Params }) {
+  const { slug } = await params;
+  const source = getPost(slug);
   const { content: tempContent, data } = matter(source);
   const contentWithInternalLinks = doubleBracketLinks(tempContent, data.title);
 
