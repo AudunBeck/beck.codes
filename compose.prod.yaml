@@ -6,7 +6,7 @@ services:
       # args:
       #   ENV_VARIABLE: ${ENV_VARIABLE}
       #   NEXT_PUBLIC_ENV_VARIABLE: ${NEXT_PUBLIC_ENV_VARIABLE}
-    image: ghcr.io/audunbeck/docker-image-test:latest
+    image: ghcr.io/audunbeck/beck-codes:latest
     expose: 
       - "3000"
     deploy:
