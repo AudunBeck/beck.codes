@@ -16,8 +16,14 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
   next-app:
-    image: ghcr.io/audunbeck/docker-image-test:latest
+    image: ghcr.io/audunbeck/beck-codes:latest
     labels:
       - "traefik.enable=true"
       - "traefik.routers.next-app.rule=Host(`beck.codes`)"
+    # networks:
+    #   - "beck-codes"
+
+# networks:
+#   beck-codes:
+#     driver: overlay
 

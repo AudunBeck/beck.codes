@@ -41,6 +41,7 @@
           uses: docker/build-push-action@v6
           with:
             context: .
+            platforms: linux/arm64
             push: true
             tags: |
               ghcr.io/audunbeck/beck-codes:latest
