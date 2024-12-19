@@ -37,22 +37,27 @@
             username: ${{ github.actor }}
             password: ${{ secrets.GITHUB_TOKEN }}
 
-        - name: Build Docker Image
-          run: |
-            docker buildx build --platform linux/arm64 -t ghcr.io/audunbeck/beck-codes:latest -t ghcr.io/audunbeck/beck-codes:${{ github.sha }} .
+        # - name: Build Docker Image
+        #   run: |
+        #     docker buildx build --platform linux/arm64 -t ghcr.io/audunbeck/beck-codes:latest -t ghcr.io/audunbeck/beck-codes:${{ github.sha }} .
+        #
+        # - name: Push Docker Image
+        #   run: |
+        #     docker push ghcr.io/audunbeck/beck-codes:latest
+        #     docker push ghcr.io/audunbeck/beck-codes:${{ github.sha }}
+        
+        - name: Set up QEMU
+          uses: docker/setup-qemu-action@v3
 
-        - name: Push Docker Image
-          run: |
-            docker push ghcr.io/audunbeck/beck-codes:latest
-            docker push ghcr.io/audunbeck/beck-codes:${{ github.sha }}
+        - name: Set up Docker Buildx
+          uses: docker/setup-buildx-action@v3
 
-
-        # - name: Build and push Docker image
-        #   uses: docker/build-push-action@v6
-        #   with:
-        #     context: .
-        #     platforms: linux/arm64
-        #     push: true
-        #     tags: |
-        #       ghcr.io/audunbeck/beck-codes:latest
-        #       ghcr.io/audunbeck/beck-codes:${{ github.sha }}
+        - name: Build and push Docker image
+          uses: docker/build-push-action@v6
+          with:
+            context: .
+            platforms: linux/arm64
+            push: true
+            tags: |
+              ghcr.io/audunbeck/beck-codes:latest
+              ghcr.io/audunbeck/beck-codes:${{ github.sha }}
