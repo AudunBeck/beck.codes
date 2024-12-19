@@ -22,14 +22,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {process.env.NODE_ENV === "production" && (
+        {/*process.env.NODE_ENV === "production" && (
           <Script
             strategy="beforeInteractive"
             defer
             src={process.env.UMAMI_SOURCE}
             data-website-id={process.env.UMAMI_WEBSITE_ID}
           />
-        )}
+        )*/}
       </head>
       <body className={`${inter.className} min-h-screen`}>
         <Header />

@@ -1,0 +1,23 @@
+services:
+  reverse-proxy:
+    image: traefik:v3.2
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker"
+    ports:
+      - mode: host
+        protocol: tcp
+        published: 80
+        target: 80
+      - mode: host
+        protocol: tcp
+        published: 443
+        target: 443
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  next-app:
+    image: ghcr.io/audunbeck/docker-image-test:latest
+    labels:
+      - "traefik.enable=true"
+      - "traefik.routers.next-app.rule=Host(`beck.codes`)"
+
