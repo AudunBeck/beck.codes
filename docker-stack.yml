@@ -18,7 +18,7 @@ services:
       - letsencrypt:/letsencrypt
       - /var/run/docker.sock:/var/run/docker.sock
   next-app:
-    image: ghcr.io/audunbeck/beck-codes:708450b7b6b5a670aedb2d2b30f7259416b448ee
+    image: ghcr.io/audunbeck/beck-codes:${GIT_COMMIT_HASH}
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.next-app.rule=Host(`beck.codes`)"

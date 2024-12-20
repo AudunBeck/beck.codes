@@ -71,6 +71,7 @@
 
         - name: Deploy Docker Stack
           env:
+            GIT_COMMIT_HASH: ${{ github.sha }}
             INPUT_PORT: 22
             INPUT_HOST: ${{ secrets.HOST }}
             INPUT_SSH_KEY: ${{ secrets.SSH_KEY }}
