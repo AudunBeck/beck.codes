@@ -45,7 +45,7 @@
         #   run: |
         #     docker push ghcr.io/audunbeck/beck-codes:latest
         #     docker push ghcr.io/audunbeck/beck-codes:${{ github.sha }}
-        
+
         - name: Set up QEMU
           uses: docker/setup-qemu-action@v3
 
@@ -61,3 +61,21 @@
             tags: |
               ghcr.io/audunbeck/beck-codes:latest
               ghcr.io/audunbeck/beck-codes:${{ github.sha }}
+    deploy: 
+      needs: build-and-push-image
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout@v4
+
+        - name: Deploy Docker Stack
+          env:
+            INPUT_PORT: 22
+            INPUT_HOST: ${{ secrets.HOST }}
+            INPUT_SSH_KEY: ${{ secrets.SSH_KEY }}
+            INPUT_USER: ${{ secrets.DEPLOY_USER }}
+            INPUT_FILE: ${{ github.workspace }}/docker-stack.yml
+            INPUT_NAME: ${{ secrets.DOCKER_STACK_NAME }}
+          run: |
+            bash $GITHUB_WORKSPACE/scripts/docker-stack.sh

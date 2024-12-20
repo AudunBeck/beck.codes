@@ -2,28 +2,29 @@ services:
   reverse-proxy:
     image: traefik:v3.2
     command:
-      - "--api.insecure=true"
-      - "--providers.docker"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.websecure.address=:443" 
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
+      - "--certificatesresolvers.myresolver.acme.email=active.home7023@fastmail.com"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
     ports:
-      - mode: host
-        protocol: tcp
-        published: 80
-        target: 80
-      - mode: host
-        protocol: tcp
-        published: 443
-        target: 443
+      - "80:80"
+      - "443:443"
     volumes:
+      - letsencrypt:/letsencrypt
       - /var/run/docker.sock:/var/run/docker.sock
   next-app:
-    image: ghcr.io/audunbeck/beck-codes:latest
+    image: ghcr.io/audunbeck/beck-codes:708450b7b6b5a670aedb2d2b30f7259416b448ee
     labels:
       - "traefik.enable=true"
-      - "traefik.routers.next-app.rule=Host(`beck.codes`)"
-    # networks:
-    #   - "beck-codes"
+      - "traefik.http.routers.next-app.rule=Host(`beck.codes`)"
+      - "traefik.http.routers.next-app.entrypoints=websecure"
+      - "traefik.http.routers.next-app.tls.certresolver=myresolver"
+      - "traefik.http.services.next-app.loadbalancer.server.port=3000"
 
-# networks:
-#   beck-codes:
-#     driver: overlay
-
+volumes:
+  letsencrypt:
