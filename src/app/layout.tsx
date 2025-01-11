@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
-import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,17 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        {/*process.env.NODE_ENV === "production" && (
-          <Script
-            strategy="beforeInteractive"
-            defer
-            src={process.env.UMAMI_SOURCE}
-            data-website-id={process.env.UMAMI_WEBSITE_ID}
-          />
-        )*/}
-      </head>
-      <body className={`${inter.className} min-h-screen`}>
+      <body
+        className={`${inter.className} min-h-screen text-text dark:text-text-dark bg-linear-to-br from-bg-start to-bg-end dark:from-bg-start-dark dark:to-bg-end-dark`}
+      >
         <Header />
         {children}
         <div className="mt-20" />

@@ -1,32 +1,25 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 242, 245, 239;
-  --background-end-rgb: 243, 247, 241;
+@plugin '@tailwindcss/typography';
+
+@theme {
+  --color-text: rgb(0, 0, 0);
+  --color-bg-start: rgb(243, 247, 241);
+  --color-bg-end: rgb(242, 245, 239);
+
+  /*Dark mode */
+  --color-text-dark: rgb(235, 235, 235);
+  --color-bg-start-dark: rgb(15, 18, 15);
+  --color-bg-end-dark: rgb(0, 4, 0);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 235, 235, 235;
-    --background-end-rgb: 0, 4, 0;
-    --background-start-rgb: 15, 18, 15;
-  }
-}
+@utility prose {
+  max-width: 72ch;
+  em {
+    color: var(--color-green-700);
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-    to right bottom,
-    rgb(var(--background-start-rgb)),
-    rgb(var(--background-end-rgb))
-  );
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+    @media (prefers-color-scheme: dark) {
+      color: var(--color-green-400);
+    }
   }
 }
