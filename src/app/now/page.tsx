@@ -13,12 +13,12 @@ export default async function AboutPage() {
   return (
     <div className="px-4 md:px-16">
       <header>
-        <h1 className="text-4xl md:text-6xl mb-6 font-semibold mt-8">Now</h1>
+        <h1 className="mt-8 mb-6 font-semibold text-4xl md:text-6xl">Now</h1>
         <h2 className="text-2xl md:text-3xl">
           A log of what I have been making, reading and thinking about.
         </h2>
       </header>
-      <main className="mt-8 prose md:prose-lg prose-slate dark:prose-invert">
+      <main className="prose md:prose-lg prose-slate dark:prose-invert mt-8">
         {content}
       </main>
     </div>

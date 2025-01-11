@@ -35,7 +35,7 @@ export default async function Page({ params }: { params: Params }) {
 
   return (
     <main className="container mx-auto">
-      <article className="px-4 md:px-16 mt-8 prose md:prose-lg prose-slate dark:prose-invert">
+      <article className="prose md:prose-lg prose-slate dark:prose-invert mt-8 px-4 md:px-16">
         <header>
           <p className="text-base uppercase">{data.type}</p>
           <h1>{data.title}</h1>

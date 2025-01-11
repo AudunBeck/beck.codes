@@ -1,3 +1,3 @@
 export function SmallAbout({ children }: { children: string }) {
-  return <p className="uppercase absolute -translate-y-8">{children}</p>;
+  return <p className="-translate-y-8 absolute uppercase">{children}</p>;
 }
