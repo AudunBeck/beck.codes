@@ -9,6 +9,8 @@
   --color-secondary: oklch(69.48% 0.088 23.11);
   --color-accent: oklch(70.77% 0.11 95.24);
 
+  --color-nl-purple: rgb(102, 100, 241);
+
   --linearPrimarySecondary: linear-gradient(
     oklch(35.27% 0.097 273.54),
     oklch(69.48% 0.088 23.11)
