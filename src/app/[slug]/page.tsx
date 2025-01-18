@@ -34,10 +34,10 @@ export default async function Page({ params }: { params: Params }) {
   });
 
   return (
-    <main className="container mx-auto">
-      <article className="prose md:prose-lg prose-slate dark:prose-invert mt-8 px-4 md:px-16">
+    <main className="container mx-auto px-4 md:px-16">
+      <article className="prose md:prose-lg prose-slate dark:prose-invert">
         <header>
-          <p className="text-base uppercase">{data.type}</p>
+          <p className="mt-0! text-base uppercase">{data.type}</p>
           <h1>{data.title}</h1>
           <div className="flex justify-between">
             {data.topics && <span>Time to implement topics</span>}

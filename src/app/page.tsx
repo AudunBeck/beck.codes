@@ -39,7 +39,7 @@ export default async function Home() {
       <h1 className="mt-8 font-semibold text-4xl md:text-6xl">Beck.Codes</h1>
       <h2 className="mt-16 text-3xl md:text-4xl">Digital Garden</h2>
       <p className="mt-1 text-lg">My small digital garden</p>
-      <div className="grid md:grid-cols-4">
+      <div className="mt-6 grid md:grid-cols-4">
         <section className="md:col-span-3">
           <h3 className="mt-4 text-2xl md:text-3xl">Tech</h3>
           <div className="mt-2 grid gap-4 md:grid-cols-2">
