@@ -11,7 +11,7 @@ export default async function AboutPage() {
     options: { parseFrontmatter: true },
   });
   return (
-    <div className="px-4 md:px-16">
+    <div className="container mx-auto px-4 md:px-16">
       <header>
         <h1 className="mt-8 mb-6 font-semibold text-4xl md:text-6xl">Now</h1>
         <h2 className="text-2xl md:text-3xl">
