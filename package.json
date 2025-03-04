@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "pnpm run build:backlinks && next dev",
     "build:backlinks": "node ./scripts/post-data.mjs",
     "build": "pnpm run build:backlinks && next build",
     "start": "next start",
