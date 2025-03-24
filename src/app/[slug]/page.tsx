@@ -4,7 +4,7 @@ import { doubleBracketLinks } from "@/utils/doubleBracketLinks";
 import { NOTES_PATH, filePaths, getPost } from "@/utils/mdxUtils";
 import matter from "gray-matter";
 import type { Metadata } from "next";
-import { compileMDX } from "next-mdx-remote/rsc";
+import { evaluate } from "next-mdx-remote-client/rsc";
 
 type Params = Promise<{ slug: string }>;
 
@@ -28,7 +28,7 @@ export default async function Page({ params }: { params: Params }) {
   const { content: tempContent, data } = matter(source);
   const contentWithInternalLinks = doubleBracketLinks(tempContent, data.title);
 
-  const { content } = await compileMDX({
+  const { content } = await evaluate({
     source: contentWithInternalLinks,
     components: { InternalLink: InternalLink },
   });

@@ -7,13 +7,14 @@ import {
   filePaths,
   sortPostByLastWritten,
 } from "@/utils/mdxUtils";
-import { compileMDX } from "next-mdx-remote/rsc";
+import { evaluate } from "next-mdx-remote-client/rsc";
 import Link from "next/link";
 
 export default async function Home() {
   const promiseNotes = filePaths(NOTES_PATH).map(async (filePath) => {
     const source = fs.readFileSync(path.join(NOTES_PATH, filePath));
-    const { content, frontmatter } = await compileMDX<FrontmatterType>({
+    // @ts-ignore
+    const { content, frontmatter } = await evaluate<FrontmatterType>({
       source: source,
       options: { parseFrontmatter: true },
     });
@@ -22,7 +23,8 @@ export default async function Home() {
   });
   const promiseTech = filePaths(TECH_PATH).map(async (filePath) => {
     const source = fs.readFileSync(path.join(TECH_PATH, filePath));
-    const { content, frontmatter } = await compileMDX<FrontmatterType>({
+    // @ts-ignore
+    const { content, frontmatter } = await evaluate<FrontmatterType>({
       source: source,
       options: { parseFrontmatter: true },
     });

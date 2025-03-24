@@ -1,12 +1,13 @@
 import fs from "node:fs";
 import path from "node:path";
 import type { FrontmatterType } from "@/utils/mdxUtils";
-import { compileMDX } from "next-mdx-remote/rsc";
+import { evaluate } from "next-mdx-remote-client/rsc";
 
 export default async function AboutPage() {
   const nowPath = path.join(process.cwd(), "src/app/now/now.mdx");
   const source = fs.readFileSync(nowPath);
-  const { content } = await compileMDX<FrontmatterType>({
+  // @ts-ignore
+  const { content } = await evaluate<FrontmatterType>({
     source: source,
     options: { parseFrontmatter: true },
   });
