@@ -34,8 +34,8 @@ export default async function Page({ params }: { params: Params }) {
   });
 
   return (
-    <main className="container mx-auto px-4 md:px-16">
-      <article className="prose md:prose-lg prose-slate dark:prose-invert">
+    <main className="container mx-auto grid gap-6 px-6 lg:grid-cols-4">
+      <article className="prose md:prose-lg prose-slate dark:prose-invert lg:col-span-3">
         <header>
           <p className="mt-0! text-base uppercase">{data.type}</p>
           <h1>{data.title}</h1>
@@ -46,6 +46,9 @@ export default async function Page({ params }: { params: Params }) {
         </header>
         <div>{content}</div>
       </article>
+      <div>
+        <div className="sticky rounded-xl border shadow"></div>
+      </div>
     </main>
   );
 }
