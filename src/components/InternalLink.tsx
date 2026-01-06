@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 interface InternalLinkProps {
   title: string;
   description: string;
