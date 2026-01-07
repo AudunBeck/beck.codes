@@ -13,23 +13,21 @@ import {
 export default async function Home() {
   const promiseNotes = filePaths(NOTES_PATH).map(async (filePath) => {
     const source = fs.readFileSync(path.join(NOTES_PATH, filePath));
-    // @ts-expect-error
-    const { content, frontmatter } = await evaluate<FrontmatterType>({
+    const result = (await evaluate({
       source: source,
       options: { parseFrontmatter: true },
-    });
+    })) as unknown as { content: React.ReactNode; frontmatter: FrontmatterType };
     const slug = filePath.replace(/\.mdx$/, "");
-    return { content, frontmatter, slug, filePath };
+    return { content: result.content, frontmatter: result.frontmatter, slug, filePath };
   });
   const promiseTech = filePaths(TECH_PATH).map(async (filePath) => {
     const source = fs.readFileSync(path.join(TECH_PATH, filePath));
-    // @ts-expect-error
-    const { content, frontmatter } = await evaluate<FrontmatterType>({
+    const result = (await evaluate({
       source: source,
       options: { parseFrontmatter: true },
-    });
+    })) as unknown as { content: React.ReactNode; frontmatter: FrontmatterType };
     const slug = filePath.replace(/\.mdx$/, "");
-    return { content, frontmatter, slug, filePath };
+    return { content: result.content, frontmatter: result.frontmatter, slug, filePath };
   });
 
   const notes = await Promise.all(promiseNotes);

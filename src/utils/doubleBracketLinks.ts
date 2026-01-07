@@ -25,7 +25,7 @@ export function doubleBracketLinks(content: string, title: string) {
     const opening = pair[0];
     const closing = pair[1];
 
-    const foundLinkText = content.substring(opening + 1, closing - 1);
+    const foundLinkText = content.substring(opening + 2, closing - 2);
 
     const matchedOutboundLink = outboundLinks
       ? outboundLinks.find(
@@ -40,9 +40,12 @@ export function doubleBracketLinks(content: string, title: string) {
         description: matchedDescription,
       } = matchedOutboundLink;
 
-      result += content.substring(previousIndex, opening - 1);
-      result += `<InternalLink title={"${matchedTitle}"} description={"${matchedDescription}"}  href={"/${slug}"}>`; // append JSX opening tags
-      result += foundLinkText; // skip opening brackets, then append link content (referenced post title or alias)
+      // Append content before the bracket
+      result += content.substring(previousIndex, opening);
+
+      // Append JSX with properly escaped attributes
+      result += `<InternalLink title={${JSON.stringify(matchedTitle)}} description={${JSON.stringify(matchedDescription)}} href={${JSON.stringify(`/${slug}`)}}>`;
+      result += foundLinkText;
       result += "</InternalLink>";
     } else {
       result += content.substring(previousIndex, closing);
@@ -52,6 +55,6 @@ export function doubleBracketLinks(content: string, title: string) {
   const numPairs = matchingBracketPairs.length;
   const lastClosingBracket = matchingBracketPairs[numPairs - 1][1];
 
-  result += content.substring(lastClosingBracket + 1, content.length - 1);
+  result += content.substring(lastClosingBracket + 1);
   return result;
 }

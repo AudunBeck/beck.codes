@@ -6,11 +6,10 @@ import type { FrontmatterType } from "@/utils/mdxUtils";
 export default async function AboutPage() {
   const nowPath = path.join(process.cwd(), "src/app/now/now.mdx");
   const source = fs.readFileSync(nowPath);
-  // @ts-expect-error
-  const { content } = await evaluate<FrontmatterType>({
+  const result = (await evaluate({
     source: source,
     options: { parseFrontmatter: true },
-  });
+  })) as unknown as { content: React.ReactNode };
   return (
     <div className="container mx-auto px-4 md:px-16">
       <header>
@@ -20,7 +19,7 @@ export default async function AboutPage() {
         </h2>
       </header>
       <main className="prose md:prose-lg prose-slate dark:prose-invert mt-8">
-        {content}
+        {result.content}
       </main>
     </div>
   );

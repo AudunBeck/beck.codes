@@ -38,7 +38,16 @@ export function sortPostByLastWritten<
   return sortedPosts;
 }
 
+// Validate slug is safe (alphanumeric, hyphens, underscores only)
+function validateSlug(slug: string): boolean {
+  return /^[a-zA-Z0-9_-]+$/.test(slug);
+}
+
 export function getPost(slug: string) {
+  if (!validateSlug(slug)) {
+    notFound();
+  }
+
   const notes = fs.readdirSync(NOTES_PATH);
   const tech = fs.readdirSync(TECH_PATH);
 
@@ -62,7 +71,7 @@ export function getPost(slug: string) {
   let source: Buffer;
   try {
     source = fs.readFileSync(filePath);
-  } catch {
+  } catch (error) {
     notFound();
   }
   return source;
