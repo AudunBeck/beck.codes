@@ -7,30 +7,27 @@
     "build:backlinks": "node ./scripts/post-data.mjs",
     "build": "pnpm run build:backlinks && next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "biome check .",
     "format": "biome check --write ."
   },
   "dependencies": {
     "date-fns": "^4.1.0",
     "gray-matter": "^4.0.3",
-    "next": "15.2.3",
-    "next-mdx-remote-client": "^2.1.1",
-    "react": "19.0.0",
-    "react-dom": "19.0.0"
+    "next": "16.1.6",
+    "next-mdx-remote-client": "^2.1.9",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
-    "@tailwindcss/postcss": "^4.0.9",
-    "@tailwindcss/typography": "^0.5.16",
-    "@types/node": "^22.13.8",
-    "@types/react": "^19.0.10",
-    "@types/react-dom": "^19.0.4",
-    "postcss": "^8.5.3",
-    "tailwindcss": "^4.0.9",
-    "typescript": "^5.8.2"
+    "@biomejs/biome": "2.4.4",
+    "@tailwindcss/postcss": "^4.2.1",
+    "@tailwindcss/typography": "^0.5.19",
+    "@types/node": "^24",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.2.1",
+    "typescript": "^5.9.3"
   },
-  "engines": {
-    "node": "22"
-  },
-  "packageManager": "pnpm@10.27.0+sha512.72d699da16b1179c14ba9e64dc71c9a40988cbdc65c264cb0e489db7de917f20dcf4d64d8723625f2969ba52d4b7e2a1170682d9ac2a5dcaeaab732b7e16f04a"
+  "packageManager": "pnpm@10.30.1+sha512.3590e550d5384caa39bd5c7c739f72270234b2f6059e13018f975c313b1eb9fefcc09714048765d4d9efe961382c312e624572c0420762bdc5d5940cdf9be73a"
 }

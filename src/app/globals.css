@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@plugin '@tailwindcss/typography';
+@plugin "@tailwindcss/typography";
 
 @theme {
   --color-text: oklch(15.68% 0.015 278.19);
@@ -39,16 +39,16 @@
   /*Dark mode */
   --color-text-dark: oklch(94.74% 0.009 279.69);
   --color-background-dark: oklch(12.93% 0.01 271.95);
-  --color-primary-dark: oklch(70.32% 0.083 277.0);
+  --color-primary-dark: oklch(70.32% 0.083 277);
   --color-secondary-dark: oklch(42.49% 0.1 25.45);
   --color-accent-dark: oklch(70.77% 0.11 95.24);
 
   --linearPrimarySecondaryDark: linear-gradient(
-    oklch(70.32% 0.083 277.0),
+    oklch(70.32% 0.083 277),
     oklch(42.49% 0.1 25.45)
   );
   --linearPrimaryAccentDark: linear-gradient(
-    oklch(70.32% 0.083 277.0),
+    oklch(70.32% 0.083 277),
     oklch(70.77% 0.11 95.24)
   );
   --linearSecondaryAccentDark: linear-gradient(
@@ -56,11 +56,11 @@
     oklch(70.77% 0.11 95.24)
   );
   --radialPrimarySecondaryDark: radial-gradient(
-    oklch(70.32% 0.083 277.0),
+    oklch(70.32% 0.083 277),
     oklch(42.49% 0.1 25.45)
   );
   --radialPrimaryAccentDark: radial-gradient(
-    oklch(70.32% 0.083 277.0),
+    oklch(70.32% 0.083 277),
     oklch(70.77% 0.11 95.24)
   );
   --radialSecondaryAccentDark: radial-gradient(

@@ -1,7 +1,7 @@
 "use client";
 
-import type { MdxDateType } from "@/utils/mdxUtils";
 import { formatDistanceToNow, isMatch, parse } from "date-fns";
+import type { MdxDateType } from "@/utils/mdxUtils";
 
 export function RelativeDate({ rawDate }: { rawDate: MdxDateType }) {
   if (isMatch(rawDate, "yyyy-MM-dd")) {
