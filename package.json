@@ -7,22 +7,22 @@
     "build:backlinks": "node ./scripts/post-data.mjs",
     "build": "pnpm run build:backlinks && next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "biome check .",
     "format": "biome check --write ."
   },
   "dependencies": {
     "date-fns": "^4.1.0",
     "gray-matter": "^4.0.3",
-    "next": "15.2.3",
+    "next": "16.1.6",
     "next-mdx-remote-client": "^2.1.9",
     "react": "19.2.4",
     "react-dom": "19.2.4"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
+    "@biomejs/biome": "2.4.4",
     "@tailwindcss/postcss": "^4.2.1",
     "@tailwindcss/typography": "^0.5.19",
-    "@types/node": "^22.13.8",
+    "@types/node": "^24",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "postcss": "^8.5.6",
