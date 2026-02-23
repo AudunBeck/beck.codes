@@ -1,16 +1,18 @@
-import { Dates } from "@/components/Dates";
-import { InternalLink } from "@/components/InternalLink";
-import { doubleBracketLinks } from "@/utils/doubleBracketLinks";
-import { NOTES_PATH, filePaths, getPost } from "@/utils/mdxUtils";
 import matter from "gray-matter";
 import type { Metadata } from "next";
 import { evaluate } from "next-mdx-remote-client/rsc";
+import { Dates } from "@/components/Dates";
+import { InternalLink } from "@/components/InternalLink";
+import { doubleBracketLinks } from "@/utils/doubleBracketLinks";
+import { filePaths, getPost, NOTES_PATH } from "@/utils/mdxUtils";
 
 type Params = Promise<{ slug: string }>;
 
 export async function generateMetadata({
   params,
-}: { params: Params }): Promise<Metadata> {
+}: {
+  params: Params;
+}): Promise<Metadata> {
   const { slug } = await params;
 
   const source = getPost(slug);

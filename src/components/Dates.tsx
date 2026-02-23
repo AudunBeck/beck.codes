@@ -1,5 +1,5 @@
-import type { MdxDateType } from "@/utils/mdxUtils";
 import { differenceInDays, parse } from "date-fns";
+import type { MdxDateType } from "@/utils/mdxUtils";
 import { RelativeDate } from "./RelativeDate";
 
 interface DateProps {

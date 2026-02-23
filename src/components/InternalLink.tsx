@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 interface InternalLinkProps {
   title: string;
   description: string;
@@ -7,8 +8,8 @@ interface InternalLinkProps {
 }
 
 export function InternalLink({
-  title,
-  description,
+  title: _title,
+  description: _description,
   href,
   children,
 }: InternalLinkProps) {

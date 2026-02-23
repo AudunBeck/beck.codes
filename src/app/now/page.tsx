@@ -1,12 +1,12 @@
 import fs from "node:fs";
 import path from "node:path";
-import type { FrontmatterType } from "@/utils/mdxUtils";
 import { evaluate } from "next-mdx-remote-client/rsc";
+import type { FrontmatterType } from "@/utils/mdxUtils";
 
 export default async function AboutPage() {
   const nowPath = path.join(process.cwd(), "src/app/now/now.mdx");
   const source = fs.readFileSync(nowPath);
-  // @ts-ignore
+  // @ts-expect-error - next-mdx-remote-client type constraints don't match custom frontmatter types
   const { content } = await evaluate<FrontmatterType>({
     source: source,
     options: { parseFrontmatter: true },

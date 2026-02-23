@@ -67,7 +67,7 @@ function getAllPostData() {
           return p.ids.includes(normalisedAlias);
         });
         if (match) {
-          const matchedPostData = totalPostData.find(
+          const _matchedPostData = totalPostData.find(
             (p) => p.title === match.ids[0],
           );
 
@@ -92,7 +92,7 @@ function getAllPostData() {
       if (
         innerPost.outboundLinks.some((link) => link.title === outerPostTitle)
       ) {
-        const matchedPostData = totalPostData.find(
+        const _matchedPostData = totalPostData.find(
           (p) => p.title === innerPostTitle,
         );
         outerPost.inboundLinks.push({
