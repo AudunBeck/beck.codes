@@ -35,13 +35,11 @@ USER appuser
 # Set working directory
 WORKDIR /app
 
-COPY --from=builder /build/public ./public
+COPY --from=builder --chown=appuser:appuser /build/public ./public
 
-# Copy standalone build output from builder
 COPY --from=builder --chown=appuser:appuser /build/.next/standalone ./
 
-# Copy node_modules with production dependencies from builder
-COPY --from=builder --chown=appuser:appuser /build/node_modules ./node_modules
+COPY --from=builder --chown=appuser:appuser /build/.next/static ./.next/static
 
 # Set production environment
 ENV NODE_ENV=production
