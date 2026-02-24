@@ -29,8 +29,13 @@ FROM node:24-alpine
 RUN addgroup -g 1001 -S appuser && \
     adduser -S appuser -u 1001
 
+# Switch to non-root user
+USER appuser
+
 # Set working directory
 WORKDIR /app
+
+COPY --from=builder /app/public ./public
 
 # Copy standalone build output from builder
 COPY --from=builder --chown=appuser:appuser /build/.next/standalone ./
@@ -43,9 +48,6 @@ ENV NODE_ENV=production
 
 # Expose port 3000
 EXPOSE 3000
-
-# Switch to non-root user
-USER appuser
 
 # Start the application
 CMD ["node", "server.js"]
