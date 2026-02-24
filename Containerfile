@@ -35,7 +35,7 @@ USER appuser
 # Set working directory
 WORKDIR /app
 
-COPY --from=builder /app/public ./public
+COPY --from=builder /build/public ./public
 
 # Copy standalone build output from builder
 COPY --from=builder --chown=appuser:appuser /build/.next/standalone ./
