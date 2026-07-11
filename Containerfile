@@ -1,7 +1,7 @@
 FROM node:24-alpine AS builder
 
 # Install pnpm
-RUN npm install -g pnpm@10.30.3
+RUN npm install -g pnpm@11.11.0
 
 # Set working directory
 WORKDIR /build
